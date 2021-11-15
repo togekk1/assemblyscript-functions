@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "ESNEXT",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./lib",
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "include": ["./src"],
+  "exclude": ["./src/assembly"]
+}

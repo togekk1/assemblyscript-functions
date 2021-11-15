@@ -1,1 +1,1 @@
-# assemblyscript-json-functions
+# assemblyscript-functions

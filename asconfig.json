@@ -1,0 +1,17 @@
+{
+  "targets": {
+    "debug": {
+      "sourceMap": true,
+      "debug": true,
+      "enable": ["gc", "reference-types"]
+    },
+    "release": {
+      "optimizeLevel": 3,
+      "shrinkLevel": 2,
+      "converge": false,
+      "noAssert": false,
+      "enable": ["gc", "reference-types"]
+    }
+  },
+  "options": {}
+}

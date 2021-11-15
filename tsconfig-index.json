@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "ESNEXT",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./",
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "files": ["./index.ts"]
+}

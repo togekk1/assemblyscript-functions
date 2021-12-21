@@ -27,8 +27,11 @@ export function get_integer(list_name: string, indexes: Int32Array, keys: string
         const value: JSON.Value | null = (<JSON.Obj>data_value).get(keys[index]);
         if (value) {
           if (value.isArr) {
-            level++;
-            return get_interger_global ? get_interger_global(<JSON.Arr>value, keys, indexes, level) : 0;
+            const item = (<JSON.Arr>value).valueOf();
+            if (item.length && item[0].isObj) {
+              level++;
+              return get_interger_global ? get_interger_global(<JSON.Arr>value, keys, indexes, level) : 0;
+            } else return (<JSON.Integer>value).valueOf();
           } else return (<JSON.Integer>value).valueOf();
         } else return 0;
       } else return 0;
@@ -78,8 +81,11 @@ export function get_string(list_name: string, indexes: Int32Array, keys: string 
 
           if (value) {
             if (value.isArr) {
-              level++;
-              return get_string_global ? get_string_global(<JSON.Arr>value, keys, indexes, level) : null;
+              const item = (<JSON.Arr>value).valueOf();
+              if (item.length && item[0].isObj) {
+                level++;
+                return get_string_global ? get_string_global(<JSON.Arr>value, keys, indexes, level) : null;
+              } else return value.toString();
             } else return value.toString();
           } else return null;
         } else return null;
@@ -119,11 +125,12 @@ export function get_boolean(list_name: string, indexes: Int32Array, keys: string
         const value: JSON.Value | null = (<JSON.Obj>data_value).get(keys[level]);
         if (value) {
           if (value.isArr) {
-            level++;
-            return get_boolean_global ? get_boolean_global(<JSON.Arr>value, keys, indexes, level) : false;
-          } else {
-            return (<JSON.Bool>value).valueOf();
-          }
+            const item = (<JSON.Arr>value).valueOf();
+            if (item.length && item[0].isObj) {
+              level++;
+              return get_boolean_global ? get_boolean_global(<JSON.Arr>value, keys, indexes, level) : false;
+            } else return (<JSON.Bool>value).valueOf();
+          } else return (<JSON.Bool>value).valueOf();
         } else return false;
       } else return false;
     };

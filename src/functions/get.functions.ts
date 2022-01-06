@@ -30,18 +30,17 @@ export const get = (
 ): string | number | boolean | undefined => {
   return asc
     ? (() => {
-        const { main } = asc;
         try {
-          const value: number | boolean = [main.get_integer, main.get_float, main.get_string, main.get_boolean][type](
-            main.__newString(list_name),
-            main.__newArray(main.Int32Array_ID, indexes),
-            keys ? main.__newString(JSON.stringify(keys)) : null,
+          const value: number | boolean = [asc.get_integer, asc.get_float, asc.get_string, asc.get_boolean][type](
+            asc.__newString(list_name),
+            asc.__newArray(asc.Int32Array_ID, indexes),
+            keys ? asc.__newString(JSON.stringify(keys)) : null,
             ellipsis_length
           );
 
           switch (type) {
             case 2:
-              return typeof value === 'number' ? main.__getString(value) : value;
+              return typeof value === 'number' ? asc.__getString(value) : value;
 
             default:
               return value;

@@ -1,9 +1,6 @@
 import type { ASUtil } from '@assemblyscript/loader';
 
-export interface asc_type {
-  main: main_type;
-  i18n: i18n_type;
-}
+export type asc_type = main_type & i18n_type;
 
 interface main_type extends ASUtil, worker_type, schema_page_type, results_tab_type, table_type, bucket_page_type, object_page_type {
   find: (list_name: number, key: number, value: number | boolean, query_key: number | undefined, type: number, is_included: number) => number;

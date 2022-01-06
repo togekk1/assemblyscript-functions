@@ -1,4 +1,4 @@
-import type { asc_type } from "../interfaces/asc.interface";
+import type { asc_type } from '../interfaces/asc.interface';
 /**
    * Example:
    * ``` ts

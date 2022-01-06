@@ -1,4 +1,4 @@
-import type { asc_type } from "../interfaces/asc.interface";
+import type { asc_type } from '../interfaces/asc.interface';
 
 /**
    * Example:
@@ -32,7 +32,7 @@ export const find = ({
   value,
   query_key,
   type,
-  is_included,
+  is_included
 }: {
   asc: asc_type;
   list_name: string;
@@ -44,13 +44,12 @@ export const find = ({
 }): Object | string | number | null => {
   return asc
     ? (() => {
-        const { main } = asc;
-        const response = main.__getString(
-          main.find(
-            main.__newString(list_name),
-            main.__newString(key),
-            typeof value === "string" ? main.__newString(value) : value,
-            query_key ? main.__newString(query_key) : undefined,
+        const response = asc.__getString(
+          asc.find(
+            asc.__newString(list_name),
+            asc.__newString(key),
+            typeof value === 'string' ? asc.__newString(value) : value,
+            query_key ? asc.__newString(query_key) : undefined,
             type ?? 0,
             is_included ?? 0
           )
@@ -71,7 +70,7 @@ export const find_index = ({
   key,
   value,
   query_key,
-  type,
+  type
 }: {
   asc: asc_type;
   list_name: string;
@@ -82,12 +81,11 @@ export const find_index = ({
 }): number => {
   return asc
     ? (() => {
-        const { main } = asc;
-        const response = main.find_index(
-          main.__newString(list_name),
-          main.__newString(key),
-          typeof value === "string" ? main.__newString(value) : value,
-          query_key ? main.__newString(query_key) : undefined,
+        const response = asc.find_index(
+          asc.__newString(list_name),
+          asc.__newString(key),
+          typeof value === 'string' ? asc.__newString(value) : value,
+          query_key ? asc.__newString(query_key) : undefined,
           type ?? 0
         );
 

@@ -1,4 +1,4 @@
-import type { asc_type } from "../interfaces/asc.interface";
+import type { asc_type } from '../interfaces/asc.interface';
 /**
    * Example:
    * ``` ts
@@ -24,7 +24,7 @@ import type { asc_type } from "../interfaces/asc.interface";
    * 5: Object (Not supported yet)
    * ```
    */
-export declare const find: ({ asc, list_name, key, value, query_key, type, is_included, }: {
+export declare const find: ({ asc, list_name, key, value, query_key, type, is_included }: {
     asc: asc_type;
     list_name: string;
     key: string;
@@ -33,7 +33,7 @@ export declare const find: ({ asc, list_name, key, value, query_key, type, is_in
     type?: number | undefined;
     is_included?: 1 | undefined;
 }) => Object | string | number | null;
-export declare const find_index: ({ asc, list_name, key, value, query_key, type, }: {
+export declare const find_index: ({ asc, list_name, key, value, query_key, type }: {
     asc: asc_type;
     list_name: string;
     key: string;

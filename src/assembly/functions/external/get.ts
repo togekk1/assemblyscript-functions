@@ -1,6 +1,5 @@
 import { JSON } from 'assemblyscript-json';
 import { data } from '../..';
-import { console } from '../imported/console';
 
 // let level: i32 = 0;
 // let keys_global: string[];

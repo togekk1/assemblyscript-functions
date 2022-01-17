@@ -1,4 +1,4 @@
-import type { asc_type } from '../interfaces/asc.interface';
+import type { main_type } from '../interfaces/asc.interface';
 /**
    * Example:
    * ``` ts
@@ -22,4 +22,4 @@ import type { asc_type } from '../interfaces/asc.interface';
    * @param sort_key Property key in the Object to sort order
    * @param is_descend Sort Descending
    */
-export declare const sort: (asc: asc_type, list_name: string, sort_key: string, descending?: boolean | 1 | undefined) => Object[];
+export declare const sort: (asc: main_type, list_name: string, sort_key: string, descending?: boolean | 1 | undefined) => Object[];

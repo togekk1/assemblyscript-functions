@@ -1,4 +1,4 @@
-import type { asc_type } from '../interfaces/asc.interface';
+import type { main_type } from '../interfaces/asc.interface';
 
 /**
    * Example:
@@ -15,7 +15,7 @@ import type { asc_type } from '../interfaces/asc.interface';
    * @param list_str Stringified data JSON to be parsed
    * @param no_underscore Do not convert object keys to underscore format
    */
-export const store_json = (asc: asc_type, list_name: string, data: Object | Object[] | string, no_underscore?: 1): void => {
+export const store_json = (asc: main_type, list_name: string, data: Object | Object[] | string, no_underscore?: 1): void => {
   try {
     asc?.store_json(asc.__newString(list_name), asc.__newString(typeof data !== 'string' ? JSON.stringify(data) : data), no_underscore || 0);
   } catch (err) {

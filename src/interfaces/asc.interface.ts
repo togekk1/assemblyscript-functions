@@ -2,7 +2,7 @@ import type { ASUtil } from '@assemblyscript/loader';
 
 export type asc_type = main_type & i18n_type;
 
-interface main_type extends ASUtil, worker_type {
+export interface main_type extends ASUtil, worker_type {
   find: (list_name: number, key: number, value: number | boolean, query_key: number | undefined, type: number, is_included: number) => number;
   find_index: (list_name: number, key: number, value: number | boolean, query_key: number | undefined, type: number) => number;
   store_json: (list_name: number, list: number, no_underscore: number) => void;

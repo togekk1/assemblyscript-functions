@@ -1,4 +1,4 @@
-import type { asc_type } from '../interfaces/asc.interface';
+import type { main_type } from '../interfaces/asc.interface';
 
 /**
    * Example:
@@ -23,7 +23,7 @@ import type { asc_type } from '../interfaces/asc.interface';
    * @param sort_key Property key in the Object to sort order
    * @param is_descend Sort Descending
    */
-export const sort = (asc: asc_type, list_name: string, sort_key: string, descending?: 1 | boolean): Object[] =>
+export const sort = (asc: main_type, list_name: string, sort_key: string, descending?: 1 | boolean): Object[] =>
   asc
     ? (() => {
         try {

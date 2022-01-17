@@ -1,4 +1,4 @@
-import { asc_type } from '../interfaces/asc.interface';
+import { main_type } from '../interfaces/asc.interface';
 
 /**
    * Example:
@@ -21,7 +21,7 @@ import { asc_type } from '../interfaces/asc.interface';
    * ```
    */
 export const get = (
-  asc: asc_type,
+  asc: main_type,
   list_name: string,
   indexes: Int32Array,
   keys: string[] | undefined,

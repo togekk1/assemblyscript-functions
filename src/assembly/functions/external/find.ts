@@ -33,7 +33,7 @@ export function find(list_name: string, key: string, value: string, query_key: s
 
     const query = (data_value: JSON.Value[], index_found_id: i32, query_key: string | null): string | null => {
       const queried_value = get(data_value[index_found_id], query_key);
-      return queried_value && queried_value.value ? queried_value.value.toString() : null;
+      return queried_value && queried_value.value ? queried_value.value.stringify() : null;
     };
 
     const query_or_return = (type: i64, data_value: JSON.Value[], index_found_id: i32, query_key: string | null): string | null =>

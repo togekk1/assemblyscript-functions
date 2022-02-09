@@ -1,6 +1,6 @@
 {
   "name": "assemblyscript-functions",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "index.js",
   "repository": "https://github.com/togekk1/assemblyscript-functions.git",
   "author": "togekk1",
@@ -12,7 +12,7 @@
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-index.json",
+    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-index.json && tsc -p tsconfig-index-commonjs.json",
     "asbuild:untouched": "asc src/assembly/index.ts -b lib/wasm/main.untouched.wasm --exportRuntime --target debug",
     "asbuild:optimized": "asc src/assembly/index.ts -b lib/wasm/main.optimized.wasm --exportRuntime --target release",
     "build": "npm run tsc && npm run asbuild:optimized",

@@ -37,7 +37,7 @@ export function find(list_name: string, key: string, value: string, query_key: s
     };
 
     const query_or_return = (type: i64, data_value: JSON.Value[], index_found_id: i32, query_key: string | null): string | null =>
-      query_key !== null ? query(data_value, index_found_id, query_key) : data_value[index_found_id].toString();
+      query_key !== null ? query(data_value, index_found_id, query_key) : data_value[index_found_id].stringify();
 
     return index_found_id > -1 ? query_or_return(type, data_value, index_found_id, query_key) : null;
   }
@@ -51,7 +51,7 @@ export function find_index(list_name: string, key: string, value: string, query_
     for (let i = 0; i < data_value.length; i++) {
       const value_to_find_to_obj = changetype<JSON.Obj>(data_value[i] /** value_to_find */);
       const value_found = value_to_find_to_obj.getString(key);
-      const is_found = !!value_found && (is_included ? value_found.toString().includes(value) : value_found.toString() == value);
+      const is_found = !!value_found && (is_included ? value_found.stringify().includes(value) : value_found.stringify() == value);
       if (is_found) return i;
     }
   }

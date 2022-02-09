@@ -1,6 +1,6 @@
 {
   "name": "assemblyscript-functions",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "index.js",
   "repository": "https://github.com/togekk1/assemblyscript-functions.git",
   "author": "togekk1",
@@ -16,8 +16,8 @@
     "asbuild:untouched": "asc src/assembly/index.ts -b lib/wasm/main.untouched.wasm --exportRuntime --target debug",
     "asbuild:optimized": "asc src/assembly/index.ts -b lib/wasm/main.optimized.wasm --exportRuntime --target release",
     "build": "npm run tsc && npm run asbuild:optimized",
-    "publish:prod": "npm publish --tag latest",
-    "publish:next": "npm publish --tag next"
+    "publish:prod": "yarn build && yarn publish --tag latest",
+    "publish:next": "yarn build && yarn publish --tag next"
   },
   "releaseFiles": [
     "lib/",

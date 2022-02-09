@@ -5,9 +5,9 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./",
+    "outDir": "./lib",
     "moduleResolution": "node",
     "declaration": true
   },
-  "files": ["./index.ts"]
+  "files": ["./src/index.ts"]
 }

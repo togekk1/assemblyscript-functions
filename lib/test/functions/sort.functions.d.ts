@@ -1,3 +1,4 @@
+import type { main_type } from '../interfaces/asc.interface';
 /**
    * Example:
    * ``` ts
@@ -21,13 +22,4 @@
    * @param sort_key Property key in the Object to sort order
    * @param is_descend Sort Descending
    */
-export const sort = (asc, list_name, sort_key, descending) => asc
-    ? (() => {
-        try {
-            return JSON.parse(asc.__getString(asc.sort(asc.__newString(list_name), asc.__newString(sort_key), descending !== null && descending !== void 0 ? descending : 0)));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    })()
-    : undefined;
+export declare const sort: (asc: main_type, list_name: string, sort_key: string, descending?: boolean | 1 | undefined) => Object[];

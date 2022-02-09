@@ -8,11 +8,7 @@
     "outDir": "./lib/test",
     "moduleResolution": "node",
     "declaration": true,
-    "baseUrl": "lib",
-    "paths": {
-      "functions/*": ["functions/*"],
-      "interfaces/*": ["interfaces/*"]
-    }
+    "baseUrl": "lib"
   },
   "files": ["./src/index.ts"]
 }

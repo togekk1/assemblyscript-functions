@@ -7,7 +7,12 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./lib/test",
     "moduleResolution": "node",
-    "declaration": true
+    "declaration": true,
+    "baseUrl": "lib",
+    "paths": {
+      "functions/*": ["functions/*"],
+      "interfaces/*": ["interfaces/*"]
+    }
   },
   "files": ["./src/index.ts"]
 }

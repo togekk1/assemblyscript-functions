@@ -1,7 +1,7 @@
 {
   "name": "assemblyscript-functions",
   "version": "1.0.9",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/togekk1/assemblyscript-functions.git",
   "author": "togekk1",
   "license": "MIT",

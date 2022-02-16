@@ -51,7 +51,7 @@ export function find_index(list_name: string, key: string, value: string, query_
     for (let i = 0; i < data_value.length; i++) {
       const value_to_find_to_obj = changetype<JSON.Obj>(data_value[i] /** value_to_find */);
       const value_found = value_to_find_to_obj.getString(key);
-      const is_found = !!value_found && (is_included ? value_found.stringify().includes(value) : value_found.stringify() == value);
+      const is_found = !!value_found && (is_included ? value_found.toString().includes(value) : value_found.toString() == value);
       if (is_found) return i;
     }
   }

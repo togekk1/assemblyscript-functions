@@ -31,12 +31,22 @@ export const get = (
   return asc
     ? (() => {
         try {
+          const list_name_ptr = asc.__newString(list_name);
+          asc.__pin(list_name_ptr);
+          const indexes_ptr = asc.__newArray(asc.Int32Array_ID, indexes);
+          asc.__pin(indexes_ptr);
+          const keys_ptr = keys ? asc.__newString(JSON.stringify(keys)) : null;
+          keys_ptr && asc.__pin(keys_ptr);
           const value: number | boolean = [asc.get_integer, asc.get_float, asc.get_string, asc.get_boolean][type](
-            asc.__newString(list_name),
-            asc.__newArray(asc.Int32Array_ID, indexes),
-            keys ? asc.__newString(JSON.stringify(keys)) : null,
+            list_name_ptr,
+            indexes_ptr,
+            keys_ptr,
             ellipsis_length
           );
+
+          asc.__unpin(list_name_ptr);
+          asc.__unpin(indexes_ptr);
+          keys_ptr && asc.__unpin(keys_ptr);
 
           switch (type) {
             case 2:

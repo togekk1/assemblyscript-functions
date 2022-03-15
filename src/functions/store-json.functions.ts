@@ -17,7 +17,13 @@ import type { main_type } from '../interfaces/asc.interface';
    */
 export const store_json = (asc: main_type, list_name: string, data: Object | Object[] | string, no_underscore?: 1): void => {
   try {
-    asc?.store_json(asc.__newString(list_name), asc.__newString(typeof data !== 'string' ? JSON.stringify(data) : data), no_underscore || 0);
+    const list_name_ptr = asc.__newString(list_name);
+    asc.__pin(list_name_ptr);
+    const data_ptr = asc.__newString(typeof data !== 'string' ? JSON.stringify(data) : data);
+    asc.__pin(data_ptr);
+    asc?.store_json(list_name_ptr, data_ptr, no_underscore || 0);
+    asc.__unpin(list_name_ptr);
+    asc.__unpin(data_ptr);
   } catch (err) {
     console.error(err);
   }

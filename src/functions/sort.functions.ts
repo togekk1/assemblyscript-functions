@@ -27,7 +27,17 @@ export const sort = (asc: main_type, list_name: string, sort_key: string, descen
   asc
     ? (() => {
         try {
-          return JSON.parse(asc.__getString(asc.sort(asc.__newString(list_name), asc.__newString(sort_key), descending ?? 0)));
+          const list_name_ptr = asc.__newString(list_name);
+          asc.__pin(list_name_ptr);
+          const sort_key_ptr = asc.__newString(sort_key);
+          asc.__pin(sort_key_ptr);
+          const result_ptr = asc.sort(list_name_ptr, sort_key_ptr, descending ?? 0);
+          asc.__pin(result_ptr);
+          asc.__unpin(list_name_ptr);
+          asc.__unpin(sort_key_ptr);
+          const result = asc.__getString(result_ptr);
+          asc.__unpin(result_ptr);
+          return JSON.parse(result);
         } catch (err) {
           console.error(err);
         }

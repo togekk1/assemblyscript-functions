@@ -1,4 +1,4 @@
-import { JSON } from 'assemblyscript-json';
+import { JSON } from 'assemblyscript-json/assembly';
 
 export function get_string(item_to_query: JSON.Value | null, key: string): string | null {
   const key_array: string[] = key.split('.');

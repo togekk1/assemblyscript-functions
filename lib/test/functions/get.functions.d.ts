@@ -1,4 +1,3 @@
-import { main_type } from '../interfaces/asc.interface';
 /**
    * Example:
    * ``` ts
@@ -19,4 +18,4 @@ import { main_type } from '../interfaces/asc.interface';
    * 5: Object (Not supported yet)
    * ```
    */
-export declare const get: (asc: main_type, list_name: string, indexes: Int32Array, keys: string[] | undefined, type: 0 | 1 | 2 | 3, ellipsis_length?: number | undefined) => string | number | boolean | undefined;
+export declare const get: (list_name: string, indexes: Int32Array, keys: string[] | undefined, type: 0 | 1 | 2 | 3, ellipsis_length?: number | undefined) => string | number | bigint | boolean | null | undefined;

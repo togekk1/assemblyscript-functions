@@ -1,4 +1,4 @@
-import type { main_type } from '../interfaces/asc.interface';
+import { store_json as asc_store_json } from '../../lib/wasm/main.optimized';
 
 /**
    * Example:
@@ -15,15 +15,9 @@ import type { main_type } from '../interfaces/asc.interface';
    * @param list_str Stringified data JSON to be parsed
    * @param no_underscore Do not convert object keys to underscore format
    */
-export const store_json = (asc: main_type, list_name: string, data: Object | Object[] | string, no_underscore?: 1): void => {
+export const store_json = (list_name: string, data: Object | Object[] | string, no_underscore?: 1): void => {
   try {
-    const list_name_ptr = asc.__newString(list_name);
-    asc.__pin(list_name_ptr);
-    const data_ptr = asc.__newString(typeof data !== 'string' ? JSON.stringify(data) : data);
-    asc.__pin(data_ptr);
-    asc?.store_json(list_name_ptr, data_ptr, no_underscore || 0);
-    asc.__unpin(list_name_ptr);
-    asc.__unpin(data_ptr);
+    asc_store_json(list_name, typeof data !== 'string' ? JSON.stringify(data) : data, no_underscore ?? 0);
   } catch (err) {
     console.error(err);
   }

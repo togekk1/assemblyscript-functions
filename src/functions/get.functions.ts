@@ -1,5 +1,4 @@
-import { main_type } from '../interfaces/asc.interface';
-
+import { get_integer, get_float, get_string, get_boolean } from '../../lib/wasm/main.optimized';
 /**
    * Example:
    * ``` ts
@@ -21,44 +20,23 @@ import { main_type } from '../interfaces/asc.interface';
    * ```
    */
 export const get = (
-  asc: main_type,
   list_name: string,
   indexes: Int32Array,
   keys: string[] | undefined,
   type: 0 | 1 | 2 | 3,
   ellipsis_length?: number
-): string | number | boolean | undefined => {
-  return asc
-    ? (() => {
-        try {
-          const list_name_ptr = asc.__newString(list_name);
-          asc.__pin(list_name_ptr);
-          const indexes_ptr = asc.__newArray(asc.Int32Array_ID, indexes);
-          asc.__pin(indexes_ptr);
-          const keys_ptr = keys ? asc.__newString(JSON.stringify(keys)) : null;
-          keys_ptr && asc.__pin(keys_ptr);
-          const value: number | boolean = [asc.get_integer, asc.get_float, asc.get_string, asc.get_boolean][type](
-            list_name_ptr,
-            indexes_ptr,
-            keys_ptr,
-            ellipsis_length
-          );
+): string | number | bigint | boolean | null | undefined => {
+  try {
+    const value: string | number | bigint | boolean | null = [get_integer, get_float, get_string, get_boolean][type](
+      list_name,
+      indexes,
+      JSON.stringify(keys),
+      ellipsis_length ?? 0
+    );
 
-          asc.__unpin(list_name_ptr);
-          asc.__unpin(indexes_ptr);
-          keys_ptr && asc.__unpin(keys_ptr);
-
-          switch (type) {
-            case 2:
-              return typeof value === 'number' ? asc.__getString(value) : value;
-
-            default:
-              return value;
-          }
-        } catch (err) {
-          console.error(err);
-        }
-        return;
-      })()
-    : undefined;
+    return value;
+  } catch (err) {
+    console.error(err);
+  }
+  return;
 };

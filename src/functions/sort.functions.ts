@@ -1,4 +1,4 @@
-import type { main_type } from '../interfaces/asc.interface';
+import { sort as asc_sort } from '../../lib/wasm/main.optimized';
 
 /**
    * Example:
@@ -23,23 +23,10 @@ import type { main_type } from '../interfaces/asc.interface';
    * @param sort_key Property key in the Object to sort order
    * @param is_descend Sort Descending
    */
-export const sort = (asc: main_type, list_name: string, sort_key: string, descending?: 1 | boolean): Object[] =>
-  asc
-    ? (() => {
-        try {
-          const list_name_ptr = asc.__newString(list_name);
-          asc.__pin(list_name_ptr);
-          const sort_key_ptr = asc.__newString(sort_key);
-          asc.__pin(sort_key_ptr);
-          const result_ptr = asc.sort(list_name_ptr, sort_key_ptr, descending ?? 0);
-          asc.__pin(result_ptr);
-          asc.__unpin(list_name_ptr);
-          asc.__unpin(sort_key_ptr);
-          const result = asc.__getString(result_ptr);
-          asc.__unpin(result_ptr);
-          return JSON.parse(result);
-        } catch (err) {
-          console.error(err);
-        }
-      })()
-    : undefined;
+export const sort = (list_name: string, sort_key: string, descending?: 1): Object[] | undefined => {
+  try {
+    return JSON.parse(asc_sort(list_name, sort_key, descending ?? 0) ?? '');
+  } catch (err) {
+    console.error(err);
+  }
+};

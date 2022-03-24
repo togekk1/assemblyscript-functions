@@ -1,4 +1,4 @@
-import type { main_type } from '../interfaces/asc.interface';
+import { find as asc_find, find_index as asc_find_index } from '../../lib/wasm/main.optimized';
 
 /**
    * Example:
@@ -26,7 +26,6 @@ import type { main_type } from '../interfaces/asc.interface';
    * ```
    */
 export const find = ({
-  asc,
   list_name,
   key,
   value,
@@ -34,7 +33,6 @@ export const find = ({
   type,
   is_included
 }: {
-  asc: main_type;
   list_name: string;
   key: string;
   value: number | string | boolean;
@@ -42,72 +40,35 @@ export const find = ({
   type?: number;
   is_included?: 1;
 }): Object | string | number | null => {
-  return asc
-    ? (() => {
-        const list_name_ptr = asc.__newString(list_name);
-        asc.__pin(list_name_ptr);
+  return (() => {
+    const response = asc_find(list_name, key, value.toString(), query_key ?? null, type ?? 0, is_included ?? 0);
 
-        const key_ptr = asc.__newString(key);
-        asc.__pin(key_ptr);
-
-        const value_ptr = typeof value === 'string' ? asc.__newString(value) : undefined;
-        value_ptr && asc.__pin(value_ptr);
-
-        const query_key_ptr = query_key ? asc.__newString(query_key) : undefined;
-        query_key_ptr && asc.__pin(query_key_ptr);
-
-        const response = asc.__getString(
-          asc.find(
-            list_name_ptr,
-            key_ptr,
-            typeof value === 'string' && value_ptr ? value_ptr : typeof value === 'boolean' && value,
-            query_key_ptr,
-            type ?? 0,
-            is_included ?? 0
-          )
-        );
-
-        asc.__unpin(list_name_ptr);
-        asc.__unpin(key_ptr);
-        value_ptr && asc.__unpin(value_ptr);
-        query_key_ptr && asc.__unpin(query_key_ptr);
-
-        try {
-          return JSON.parse(response);
-        } catch (err) {
-          // Response is a string
-          return response;
-        }
-      })()
-    : undefined;
+    if (response)
+      try {
+        return JSON.parse(response);
+      } catch (err) {
+        // Response is a string
+        return response;
+      }
+  })();
 };
 
 export const find_index = ({
-  asc,
   list_name,
   key,
   value,
   query_key,
   type
 }: {
-  asc: main_type;
   list_name: string;
   key: string;
   value: number | string | boolean;
   query_key?: string;
   type?: number;
 }): number => {
-  return asc
-    ? (() => {
-        const response = asc.find_index(
-          asc.__newString(list_name),
-          asc.__newString(key),
-          typeof value === 'string' ? asc.__newString(value) : value,
-          query_key ? asc.__newString(query_key) : undefined,
-          type ?? 0
-        );
+  return (() => {
+    const response = asc_find_index(list_name, key, value.toString(), query_key ? query_key : null, type ?? 0);
 
-        return response;
-      })()
-    : 0;
+    return response;
+  })();
 };

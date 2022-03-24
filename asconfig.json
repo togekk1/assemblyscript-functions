@@ -3,14 +3,18 @@
     "debug": {
       "sourceMap": true,
       "debug": true,
-      "enable": ["gc", "reference-types"]
+      "enable": ["gc", "reference-types"],
+      "exportRuntime": true,
+      "bindings": "esm"
     },
     "release": {
       "optimizeLevel": 3,
       "shrinkLevel": 2,
       "converge": false,
       "noAssert": false,
-      "enable": ["gc", "reference-types"]
+      "enable": ["gc", "reference-types"],
+      "exportRuntime": true,
+      "bindings": "esm"
     }
   },
   "options": {}

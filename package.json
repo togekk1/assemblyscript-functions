@@ -1,6 +1,6 @@
 {
   "name": "assemblyscript-functions",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "main": "lib/index.js",
   "repository": "https://github.com/togekk1/assemblyscript-functions.git",
   "author": "togekk1",
@@ -13,7 +13,8 @@
   },
   "scripts": {
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-index.json && tsc -p tsconfig-index-commonjs.json",
-    "asbuild": "asc src/assembly/index.ts -o lib/wasm/main.optimized.wasm --exportRuntime --target release --bindings esm",
+    "asbuild": "asc src/assembly/index.ts -o lib/wasm/main.optimized.wasm --exportRuntime --target release && yarn asbuild:post",
+    "asbuild:post": "yarn exec sed -i 's/node://g' lib/wasm/*.js",
     "build": "yarn tsc && yarn asbuild",
     "publish:prod": "yarn build && yarn npm publish --tag latest",
     "publish:next": "yarn build && yarn npm publish --tag next"

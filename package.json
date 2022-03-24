@@ -1,6 +1,6 @@
 {
   "name": "assemblyscript-functions",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "lib/index.js",
   "repository": "https://github.com/togekk1/assemblyscript-functions.git",
   "author": "togekk1",
@@ -17,7 +17,8 @@
     "asbuild:post": "yarn exec sed -i 's/node://g' lib/wasm/*.js",
     "build": "yarn tsc && yarn asbuild",
     "publish:prod": "yarn build && yarn npm publish --tag latest",
-    "publish:next": "yarn build && yarn npm publish --tag next"
+    "publish:next": "yarn build && yarn npm publish --tag next",
+    "postinstall": "cp lib/wasm/*.optimized* $INIT_CWD/public/build"
   },
   "releaseFiles": [
     "lib/",

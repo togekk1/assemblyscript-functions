@@ -12,7 +12,6 @@
     "typescript": "^4.6.2"
   },
   "scripts": {
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-index.json && tsc -p tsconfig-index-commonjs.json",
     "asbuild": "asc src/assembly/index.ts -o lib/wasm/main.optimized.wasm --exportRuntime --target release && yarn asbuild:post",
     "asbuild:post": "yarn exec sed -i 's/node://g' lib/wasm/*.js",
     "build": "yarn tsc && yarn asbuild",

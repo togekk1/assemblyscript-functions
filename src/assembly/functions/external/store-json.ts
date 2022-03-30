@@ -14,7 +14,7 @@ import { data } from '../..';
  * 5: Object
  * ```
  */
-export function store_json(list_name: string, list_str: string, no_underscore: i32): void {
+export function store_json(list_name: string, list_str: string, no_underscore: i32 = 0): void {
   const list_value = JSON.parse(list_str);
   if (list_value.isInteger) data.set<JSON.Integer>(list_name, <JSON.Integer>list_value);
   else if (list_value.isFloat) data.set<JSON.Float>(list_name, <JSON.Float>list_value);

@@ -33,7 +33,7 @@ export declare function get_float(list_name: string, indexes: Int32Array, keys: 
  * @param ellipsis_length `i32`
  * @returns `~lib/string/String | null`
  */
-export declare function get_string(list_name: string, indexes: Int32Array, keys: string | null, ellipsis_length: number): string | null;
+export declare function get_string(list_name: string, indexes: Int32Array, keys: string | null, ellipsis_length?: number): string | null;
 /**
  * src/assembly/functions/external/get/get_boolean
  * @param list_name `~lib/string/String`
@@ -51,7 +51,7 @@ export declare function get_boolean(list_name: string, indexes: Int32Array, keys
  * @param is_included `i32`
  * @returns `i64`
  */
-export declare function find_integer(list_name: string, key: string, value: string, query_key: string | null, is_included: number): bigint;
+export declare function find_integer(list_name: string, key: string, value: string, query_key: string | null, is_included?: number): bigint;
 /**
  * src/assembly/functions/external/find/find_float
  * @param list_name `~lib/string/String`
@@ -61,7 +61,7 @@ export declare function find_integer(list_name: string, key: string, value: stri
  * @param is_included `i32`
  * @returns `f64`
  */
-export declare function find_float(list_name: string, key: string, value: string, query_key: string | null, is_included: number): number;
+export declare function find_float(list_name: string, key: string, value: string, query_key: string | null, is_included?: number): number;
 /**
  * src/assembly/functions/external/find/find_string
  * @param list_name `~lib/string/String`
@@ -71,7 +71,7 @@ export declare function find_float(list_name: string, key: string, value: string
  * @param is_included `i32`
  * @returns `~lib/string/String | null`
  */
-export declare function find_string(list_name: string, key: string, value: string, query_key: string | null, is_included: number): string | null;
+export declare function find_string(list_name: string, key: string, value: string, query_key: string | null, is_included?: number): string | null;
 /**
  * src/assembly/functions/external/find/find_boolean
  * @param list_name `~lib/string/String`
@@ -81,7 +81,7 @@ export declare function find_string(list_name: string, key: string, value: strin
  * @param is_included `i32`
  * @returns `bool`
  */
-export declare function find_boolean(list_name: string, key: string, value: string, query_key: string | null, is_included: number): boolean;
+export declare function find_boolean(list_name: string, key: string, value: string, query_key: string | null, is_included?: number): boolean;
 /**
  * src/assembly/functions/external/find/find_string_array
  * @param list_name `~lib/string/String`
@@ -91,7 +91,7 @@ export declare function find_boolean(list_name: string, key: string, value: stri
  * @param is_included `i32`
  * @returns `~lib/staticarray/StaticArray<~lib/string/String> | null`
  */
-export declare function find_string_array(list_name: string, key: string, value: string, query_key: string | null, is_included: number): Array<string> | null;
+export declare function find_string_array(list_name: string, key: string, value: string, query_key: string | null, is_included?: number): Array<string> | null;
 /**
  * src/assembly/functions/external/find/find_index
  * @param list_name `~lib/string/String`
@@ -107,7 +107,7 @@ export declare function find_index(list_name: string, key: string, value: string
  * @param list_str `~lib/string/String`
  * @param no_underscore `i32`
  */
-export declare function store_json(list_name: string, list_str: string, no_underscore: number): void;
+export declare function store_json(list_name: string, list_str: string, no_underscore?: number): void;
 /**
  * src/assembly/functions/external/sort/sort
  * @param list_name `~lib/string/String`

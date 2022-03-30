@@ -84,7 +84,7 @@ export function get_float(list_name: string, indexes: Int32Array, keys: string |
  * @param index Item index number in the list
  * @param key Property key in the Object to query
  */
-export function get_string(list_name: string, indexes: Int32Array, keys: string | null, ellipsis_length: i32): string | null {
+export function get_string(list_name: string, indexes: Int32Array, keys: string | null, ellipsis_length: i32 = 0): string | null {
   const list = data.getArr(list_name);
   if (keys) {
     const keys_new = (<JSON.Arr>JSON.parse(keys)).valueOf().map<string>((value: JSON.Value) => value.toString());

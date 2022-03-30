@@ -43,27 +43,64 @@ export declare function get_string(list_name: string, indexes: Int32Array, keys:
  */
 export declare function get_boolean(list_name: string, indexes: Int32Array, keys: string | null): boolean;
 /**
- * src/assembly/functions/external/find/find
+ * src/assembly/functions/external/find/find_integer
  * @param list_name `~lib/string/String`
  * @param key `~lib/string/String`
  * @param value `~lib/string/String`
  * @param query_key `~lib/string/String | null`
- * @param type `i32`
+ * @param is_included `i32`
+ * @returns `i64`
+ */
+export declare function find_integer(list_name: string, key: string, value: string, query_key: string | null, is_included: number): bigint;
+/**
+ * src/assembly/functions/external/find/find_float
+ * @param list_name `~lib/string/String`
+ * @param key `~lib/string/String`
+ * @param value `~lib/string/String`
+ * @param query_key `~lib/string/String | null`
+ * @param is_included `i32`
+ * @returns `f64`
+ */
+export declare function find_float(list_name: string, key: string, value: string, query_key: string | null, is_included: number): number;
+/**
+ * src/assembly/functions/external/find/find_string
+ * @param list_name `~lib/string/String`
+ * @param key `~lib/string/String`
+ * @param value `~lib/string/String`
+ * @param query_key `~lib/string/String | null`
  * @param is_included `i32`
  * @returns `~lib/string/String | null`
  */
-export declare function find(list_name: string, key: string, value: string, query_key: string | null, type: number, is_included: number): string | null;
+export declare function find_string(list_name: string, key: string, value: string, query_key: string | null, is_included: number): string | null;
+/**
+ * src/assembly/functions/external/find/find_boolean
+ * @param list_name `~lib/string/String`
+ * @param key `~lib/string/String`
+ * @param value `~lib/string/String`
+ * @param query_key `~lib/string/String | null`
+ * @param is_included `i32`
+ * @returns `bool`
+ */
+export declare function find_boolean(list_name: string, key: string, value: string, query_key: string | null, is_included: number): boolean;
+/**
+ * src/assembly/functions/external/find/find_string_array
+ * @param list_name `~lib/string/String`
+ * @param key `~lib/string/String`
+ * @param value `~lib/string/String`
+ * @param query_key `~lib/string/String | null`
+ * @param is_included `i32`
+ * @returns `~lib/staticarray/StaticArray<~lib/string/String> | null`
+ */
+export declare function find_string_array(list_name: string, key: string, value: string, query_key: string | null, is_included: number): Array<string> | null;
 /**
  * src/assembly/functions/external/find/find_index
  * @param list_name `~lib/string/String`
  * @param key `~lib/string/String`
  * @param value `~lib/string/String`
- * @param query_key `~lib/string/String | null`
- * @param type `i32`
  * @param is_included `i32`
  * @returns `i32`
  */
-export declare function find_index(list_name: string, key: string, value: string, query_key: string | null, type: number, is_included?: number): number;
+export declare function find_index(list_name: string, key: string, value: string, is_included?: number): number;
 /**
  * src/assembly/functions/external/store-json/store_json
  * @param list_name `~lib/string/String`

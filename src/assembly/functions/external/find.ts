@@ -15,36 +15,55 @@ import { get } from '../internal/get';
  *
  * @param query_key Another property key in the Object to query
  * @param type Type of the property to query
- *
- * ``` text
- * 0: Integer
- * 1: Float
- * 2: String
- * 3: Bool
- * 4: Array (Not supported yet)
- * 5: Object (Not supported yet)
- * ```
  */
-export function find(list_name: string, key: string, value: string, query_key: string | null, type: i32, is_included: i32): string | null {
+
+export function find_integer(list_name: string, key: string, value: string, query_key: string | null, is_included: i32): i64 {
+  const result = find(list_name, key, value, query_key, is_included);
+  return result ? (<JSON.Integer>result).valueOf() : 0;
+}
+
+export function find_float(list_name: string, key: string, value: string, query_key: string | null, is_included: i32): f64 {
+  const result = find(list_name, key, value, query_key, is_included);
+  return result ? (<JSON.Float>result).valueOf() : 0;
+}
+
+export function find_string(list_name: string, key: string, value: string, query_key: string | null, is_included: i32): string | null {
+  const result = find(list_name, key, value, query_key, is_included);
+  return result ? (<JSON.Str>result).valueOf() : null;
+}
+
+export function find_boolean(list_name: string, key: string, value: string, query_key: string | null, is_included: i32): bool {
+  const result = find(list_name, key, value, query_key, is_included);
+  return result ? (<JSON.Bool>result).valueOf() : false;
+}
+
+export function find_string_array(list_name: string, key: string, value: string, query_key: string | null, is_included: i32): StaticArray<string> | null {
+  const result = find(list_name, key, value, query_key, is_included);
+  const array = (<JSON.Arr>result).valueOf();
+  const array_2 = StaticArray.fromArray<string>(array.map<string>((value: JSON.Value) => (<JSON.Str>value).valueOf()));
+  return result ? array_2 : null;
+}
+
+function find(list_name: string, key: string, value: string, query_key: string | null, is_included: i32): JSON.Value | null {
   const arr = data.getArr(list_name);
   if (arr) {
     const data_value = arr.valueOf();
-    const index_found_id: i32 = find_index(list_name, key, value, query_key, type, is_included);
+    const index_found_id: i32 = find_index(list_name, key, value, is_included);
 
-    const query = (data_value: JSON.Value[], index_found_id: i32, query_key: string | null): string | null => {
+    const query = (data_value: JSON.Value[], index_found_id: i32, query_key: string | null): JSON.Value | null => {
       const queried_value = get(data_value[index_found_id], query_key);
-      return queried_value && queried_value.value ? queried_value.value.stringify() : null;
+      return queried_value ? queried_value.value : null;
     };
 
-    const query_or_return = (type: i64, data_value: JSON.Value[], index_found_id: i32, query_key: string | null): string | null =>
-      query_key !== null ? query(data_value, index_found_id, query_key) : data_value[index_found_id].stringify();
+    const query_or_return = (data_value: JSON.Value[], index_found_id: i32, query_key: string | null): JSON.Value | null =>
+      query_key !== null ? query(data_value, index_found_id, query_key) : data_value[index_found_id];
 
-    return index_found_id > -1 ? query_or_return(type, data_value, index_found_id, query_key) : null;
+    return index_found_id > -1 ? query_or_return(data_value, index_found_id, query_key) : null;
   }
   return null;
 }
 
-export function find_index(list_name: string, key: string, value: string, query_key: string | null, type: i32, is_included: i32 = 0): i32 {
+export function find_index(list_name: string, key: string, value: string, is_included: i32 = 0): i32 {
   const arr = data.getArr(list_name);
   if (arr) {
     const data_value = arr.valueOf();

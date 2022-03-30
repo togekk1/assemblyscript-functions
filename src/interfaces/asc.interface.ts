@@ -11,8 +11,6 @@ export interface main_type extends ASUtil, worker_type {
   get_string: (...args: args_type) => number;
   get_boolean: (...args: args_type) => boolean;
   sort: (list_name: number, sort_key: number, descending: number | boolean) => number;
-  Int32Array_ID: number;
-  free: () => void;
   memory_indexes: WebAssembly.Memory;
 }
 

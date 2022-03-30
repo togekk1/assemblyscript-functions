@@ -1,8 +1,3 @@
-/** src/assembly/index/Int32Array_ID */
-export declare const Int32Array_ID: {
-  /** @type `u32` */
-  get value(): number
-};
 /** src/assembly/index/data */
 export declare const data: {
   /** @type `~lib/assemblyscript-json/assembly/JSON/Obj` */

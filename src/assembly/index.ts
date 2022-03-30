@@ -4,6 +4,4 @@ export * from './functions/external/find';
 export * from './functions/external/store-json';
 export * from './functions/external/sort';
 
-export const Int32Array_ID = idof<Int32Array>();
-
 export let data: JSON.Obj = new JSON.Obj();

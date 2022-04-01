@@ -8,35 +8,35 @@ export declare const data: {
  * src/assembly/functions/external/get/get_integer
  * @param list_name `~lib/string/String`
  * @param indexes `~lib/typedarray/Int32Array`
- * @param keys `~lib/staticarray/StaticArray<~lib/string/String> | null`
+ * @param keys `~lib/staticarray/StaticArray<~lib/string/String|null> | null`
  * @returns `i64`
  */
-export declare function get_integer(list_name: string, indexes: Int32Array, keys: Array<string> | null): bigint;
+export declare function get_integer(list_name: string, indexes: Int32Array, keys: Array<string | null> | null): bigint;
 /**
  * src/assembly/functions/external/get/get_float
  * @param list_name `~lib/string/String`
  * @param indexes `~lib/typedarray/Int32Array`
- * @param keys `~lib/staticarray/StaticArray<~lib/string/String> | null`
+ * @param keys `~lib/staticarray/StaticArray<~lib/string/String|null> | null`
  * @returns `f64`
  */
-export declare function get_float(list_name: string, indexes: Int32Array, keys: Array<string> | null): number;
+export declare function get_float(list_name: string, indexes: Int32Array, keys: Array<string | null> | null): number;
 /**
  * src/assembly/functions/external/get/get_string
  * @param list_name `~lib/string/String`
  * @param indexes `~lib/typedarray/Int32Array`
- * @param keys `~lib/staticarray/StaticArray<~lib/string/String> | null`
+ * @param keys `~lib/staticarray/StaticArray<~lib/string/String|null> | null`
  * @param ellipsis_length `i32`
  * @returns `~lib/string/String | null`
  */
-export declare function get_string(list_name: string, indexes: Int32Array, keys: Array<string> | null, ellipsis_length?: number): string | null;
+export declare function get_string(list_name: string, indexes: Int32Array, keys: Array<string | null> | null, ellipsis_length?: number): string | null;
 /**
  * src/assembly/functions/external/get/get_boolean
  * @param list_name `~lib/string/String`
  * @param indexes `~lib/typedarray/Int32Array`
- * @param keys `~lib/staticarray/StaticArray<~lib/string/String> | null`
+ * @param keys `~lib/staticarray/StaticArray<~lib/string/String|null> | null`
  * @returns `bool`
  */
-export declare function get_boolean(list_name: string, indexes: Int32Array, keys: Array<string> | null): boolean;
+export declare function get_boolean(list_name: string, indexes: Int32Array, keys: Array<string | null> | null): boolean;
 /**
  * src/assembly/functions/external/find/find_integer
  * @param list_name `~lib/string/String`

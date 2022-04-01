@@ -5,10 +5,10 @@ import { data } from '../..';
 // let keys_global: string[];
 // let indexes_global: Int32Array;
 // let list: JSON.Arr | null;
-let get_interger_global: ((arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32) => i64) | null;
-let get_float_global: ((arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32) => f64) | null;
-let get_string_global: ((arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32) => string | null) | null;
-let get_boolean_global: ((arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32) => bool) | null;
+let get_interger_global: ((arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32) => i64) | null;
+let get_float_global: ((arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32) => f64) | null;
+let get_string_global: ((arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32) => string | null) | null;
+let get_boolean_global: ((arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32) => bool) | null;
 
 /**
  * Get the integer value from the item of the list
@@ -16,14 +16,14 @@ let get_boolean_global: ((arr: JSON.Arr | null, keys: StaticArray<string>, index
  * @param index Item index number in the list
  * @param key Property key in the Object to query
  */
-export function get_integer(list_name: string, indexes: Int32Array, keys: StaticArray<string> | null): i64 {
+export function get_integer(list_name: string, indexes: Int32Array, keys: StaticArray<string | null> | null): i64 {
   const list = data.getArr(list_name);
   if (keys) {
-    get_interger_global = (arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32): i64 => {
+    get_interger_global = (arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32): i64 => {
       if (arr && arr.valueOf().length) {
         const index = indexes[level];
         const data_value = arr.valueOf()[index];
-        const value: JSON.Value | null = (<JSON.Obj>data_value).get(keys[index]);
+        const value: JSON.Value | null = keys[level] ? (<JSON.Obj>data_value).get(<string>keys[level]) : null;
         if (value) {
           if (value.isArr) {
             const item = (<JSON.Arr>value).valueOf();
@@ -49,14 +49,14 @@ export function get_integer(list_name: string, indexes: Int32Array, keys: Static
  * @param index Item index number in the list
  * @param key Property key in the Object to query
  */
-export function get_float(list_name: string, indexes: Int32Array, keys: StaticArray<string> | null): f64 {
+export function get_float(list_name: string, indexes: Int32Array, keys: StaticArray<string | null> | null): f64 {
   const list = data.getArr(list_name);
   if (keys) {
-    get_float_global = (arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32): f64 => {
+    get_float_global = (arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32): f64 => {
       if (arr && arr.valueOf().length) {
         const index = indexes[level];
         const data_value = arr.valueOf()[index];
-        const value: JSON.Value | null = (<JSON.Obj>data_value).get(keys[index]);
+        const value: JSON.Value | null = keys[level] ? (<JSON.Obj>data_value).get(<string>keys[level]) : null;
         if (value) {
           if (value.isArr) {
             const item = (<JSON.Arr>value).valueOf();
@@ -82,16 +82,16 @@ export function get_float(list_name: string, indexes: Int32Array, keys: StaticAr
  * @param index Item index number in the list
  * @param key Property key in the Object to query
  */
-export function get_string(list_name: string, indexes: Int32Array, keys: StaticArray<string> | null, ellipsis_length: i32 = 0): string | null {
+export function get_string(list_name: string, indexes: Int32Array, keys: StaticArray<string | null> | null, ellipsis_length: i32 = 0): string | null {
   const list = data.getArr(list_name);
   if (keys) {
-    get_string_global = (arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32): string | null => {
+    get_string_global = (arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32): string | null => {
       if (arr && arr.valueOf().length) {
         const index = indexes[level];
 
         if (index <= arr.valueOf().length - 1) {
           const data_value = arr.valueOf()[index];
-          const value: JSON.Value | null = (<JSON.Obj>data_value).get(keys[level]);
+          const value: JSON.Value | null = keys[level] ? (<JSON.Obj>data_value).get(<string>keys[level]) : null;
 
           if (value) {
             if (value.isArr) {
@@ -118,15 +118,14 @@ export function get_string(list_name: string, indexes: Int32Array, keys: StaticA
  * @param index Item index number in the list
  * @param key Property key in the Object to query
  */
-export function get_boolean(list_name: string, indexes: Int32Array, keys: StaticArray<string> | null): bool {
+export function get_boolean(list_name: string, indexes: Int32Array, keys: StaticArray<string | null> | null): bool {
   const list = data.getArr(list_name);
   if (keys) {
-    get_boolean_global = (arr: JSON.Arr | null, keys: StaticArray<string>, indexes: Int32Array, level: i32): bool => {
+    get_boolean_global = (arr: JSON.Arr | null, keys: StaticArray<string | null>, indexes: Int32Array, level: i32): bool => {
       if (arr && arr.valueOf().length) {
         const index = indexes[level];
         const data_value = arr.valueOf()[index];
-
-        const value: JSON.Value | null = (<JSON.Obj>data_value).get(keys[level]);
+        const value: JSON.Value | null = keys[level] ? (<JSON.Obj>data_value).get(<string>keys[level]) : null;
         if (value) {
           if (value.isArr) {
             const item = (<JSON.Arr>value).valueOf();
